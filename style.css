@@ -109,7 +109,9 @@ a, button {
     font-size: 1.5rem;
     font-weight: bold;
     background: linear-gradient(45deg, #ff007a, #7a00ff);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
 }
 
@@ -220,46 +222,77 @@ a, button {
     align-items: center;
 }
 
+.face-container {
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+    /* This creates the 3D depth effect */
+    perspective: 1000px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s ease-out;
+}
+
 .avatar-bg {
     width: 100%;
     display: block;
     filter: drop-shadow(0 0 30px rgba(255, 0, 122, 0.2));
+    /* The avatar rotates slightly based on the mouse position */
+    transform: rotateX(calc(var(--y) * -10deg)) rotateY(calc(var(--x) * 10deg));
+    transition: transform 0.1s ease-out;
+}
+
+/* We also need to keep the eyes attached to the face during rotation */
+.eyes-wrapper {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(20px); /* Pushes eyes forward in 3D space */
+    display: flex;
+    gap: 38px;
+    pointer-events: none;
+    z-index: 100;
+
 }
 
 /* The Box that holds both eyes */
 .eyes-wrapper {
     position: absolute;
-    /* ADJUST THESE TWO NUMBERS TO MOVE THE EYES */
-    top: 38%;     /* Move down by increasing this (e.g., 40%) */
-    left: 50%;    /* Keep at 50% to stay centered on the face */
+    /* Adjust these tiny % to align perfectly over the avatar's face */
+    top: 38%; 
+    left: 50%; 
     
     transform: translate(-50%, -50%); 
     display: flex;
-    gap: 42px;    /* Move eyes closer or further apart here */
+    gap: 38px; /* Adjust this to match the width between original eyes */
     pointer-events: none;
-    z-index: 10;
+    z-index: 100;
 }
 
 .eye {
-    width: 22px;  /* Size of the white part */
-    height: 22px;
+    width: 32px;  /* Increased size to cover the PNG eyes completely */
+    height: 32px;
     background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Adds depth */
+    /* This border helps hide the edges of the image eyes below */
+    border: 2px solid #0f0f12; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     animation: blink 4s infinite;
 }
 
 .pupil {
-    width: 10px;
-    height: 10px;
-    background: #1a1a1a;
+    width: 14px;
+    height: 14px;
+    background: #000;
     border-radius: 50%;
     position: relative;
-    /* This will be moved by the JavaScript */
+    transition: transform 0.05s linear;
+    box-shadow: 0 0 5px rgba(255, 0, 122, 0.4); /* Adds a slight neon glow */
 }
 
 @keyframes blink {
@@ -275,7 +308,9 @@ a, button {
     margin-bottom: 40px;
     text-align: center;
     background: linear-gradient(to right, #fff, #7a00ff);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
 }
 
@@ -427,4 +462,135 @@ footer {
         /* If avatar scales down, you might need to adjust gap for mobile */
         gap: 25px; 
     }
+}
+.btn-small-link {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.btn-small {
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: none; /* Keeps our custom cursor working */
+    transition: 0.3s;
+    font-size: 0.85rem;
+}
+
+.btn-small:hover {
+    background: #ff007a;
+    border-color: #ff007a;
+    transform: translateY(-2px);
+}
+.skill-category-label {
+    text-align: center;
+    color: #ff007a;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* Optional: Make Core Skills slightly larger/glow more */
+.skills-grid .skill-card:nth-child(-n+2) {
+    border-color: rgba(122, 0, 255, 0.4);
+    box-shadow: 0 0 15px rgba(122, 0, 255, 0.1);
+}
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 10%;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+    border-radius: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: 0.4s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #7a00ff;
+    background: rgba(122, 0, 255, 0.05);
+}
+
+.stat-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 10px 0;
+    background: linear-gradient(45deg, #ff007a, #7a00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #7a00ff, #ff007a);
+    box-shadow: 0 0 10px #7a00ff;
+}
+.hero-socials {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.social-icon-btn {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.social-icon-btn:hover {
+    background: rgba(122, 0, 255, 0.2);
+    border-color: #7a00ff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(122, 0, 255, 0.3);
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0 5px;
+}
+/* Custom hover for WhatsApp to use its brand color */
+.social-links a[href*="wa.me"]:hover {
+    color: #25D366 !important; /* WhatsApp Green */
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
 }
