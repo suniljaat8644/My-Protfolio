@@ -134,6 +134,33 @@
     once: true      // Animation happens only once while scrolling down
   });
 </script>
+<script>
+    const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
 
+document.addEventListener('mousemove', (e) => {
+    // Move the small dot instantly
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    // Move the glow with a slight delay
+    follower.style.left = e.clientX + 'px';
+    follower.style.top = e.clientY + 'px';
+});
+
+// Add a "hover" effect when touching buttons
+document.querySelectorAll('button, a').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        follower.style.transform = 'translate(-50%, -50%) scale(2)';
+        follower.style.background = 'rgba(255, 0, 122, 0.5)'; // Change to pink on hover
+    });
+    item.addEventListener('mouseleave', () => {
+        follower.style.transform = 'translate(-50%, -50%) scale(1)';
+        follower.style.background = 'rgba(122, 0, 255, 0.3)';
+    });
+});
+</script>
 </body>
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
 </html>
