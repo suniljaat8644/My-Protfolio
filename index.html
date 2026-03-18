@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunil Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Sunil Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="badge">Available for Work</span>
+            <h1>Building <span class="highlight">Digital</span> Products, Brands & Experience.</h1>
+            <p>I’m a developer focused on crafting clean and user-friendly experiences.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">Connect with me</button>
+                <button class="btn-secondary">My Projects</button>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="avataaars.png" alt="My Avatar">
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2 class="section-title">My Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+                <span>JavaScript</span>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                <span>React</span>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                <span>HTML5</span>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                <span>CSS3</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400" alt="Project 1">
+                </div>
+                <div class="project-info">
+                    <h3>Modern Dashboard</h3>
+                    <p>A data visualization tool built for tracking analytics in real-time.</p>
+                    <div class="project-tags">
+                        <span>React</span>
+                        <span>Chart.js</span>
+                    </div>
+                    <button class="btn-small">View Project</button>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?q=80&w=400" alt="Project 2">
+                </div>
+                <div class="project-info">
+                    <h3>Portfolio Concept</h3>
+                    <p>A minimalist design concept focused on typography and spacing.</p>
+                    <div class="project-tags">
+                        <span>UI Design</span>
+                        <span>HTML/CSS</span>
+                    </div>
+                    <button class="btn-small">View Project</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Let's Work Together</h2>
+        <p>Have a project in mind? Let's turn your idea into reality.</p>
+        <a href="mailto:yourname@email.com" class="btn-primary">Send me an Email</a>
+    </section>
+    <section class="contact" id="contact">
+    <div class="contact-card">
+        <span class="badge">Let's Talk</span>
+        <h2 class="section-title">Ready to start a project?</h2>
+        <p>I'm currently available for freelance work and full-time positions. If you have a question or just want to say hi, my inbox is always open!</p>
+        
+        <div class="contact-info">
+            <a href="mailto:sunil@email.com" class="btn-primary">Email Me</a>
+            <div class="social-links">
+                <a href="#" class="social-icon">GitHub</a>
+                <a href="#" class="social-icon">LinkedIn</a>
+                <a href="#" class="social-icon">Twitter</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer style="text-align: center; padding: 40px; color: #555;">
+        <p>&copy; 2026 Sunil Portfolio. Built with passion.</p>
+    </footer>
+    <script>
+    // This makes the navigation links scroll smoothly to the sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
