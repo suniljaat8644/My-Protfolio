@@ -341,3 +341,79 @@ body {
 a, button {
     cursor: none;
 }
+.face-container {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar-bg {
+    width: 350px;
+    display: block;
+}
+
+.eyes-wrapper {
+    position: absolute;
+    top: 38%; /* Adjust this to line up with your avatar's eyes */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 45px; /* Adjust the space between eyes */
+}
+
+.eye {
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pupil {
+    width: 8px;
+    height: 8px;
+    background: #0f0f12; /* Black pupil */
+    border-radius: 50%;
+    position: absolute;
+}
+.eyes-wrapper {
+    position: absolute;
+    /* Adjust these until they hit the center of your avatar's face */
+    top: 42%; 
+    left: 50%;
+    
+    transform: translate(-50%, -50%); /* Keeps them centered */
+    display: flex;
+    gap: 35px; /* Adjust this to match the distance between your avatar's eyes */
+    pointer-events: none; /* So they don't block mouse clicks */
+}
+
+.eye {
+    width: 22px;  /* Match the size of the white part of the eye */
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle outline */
+}
+
+.pupil {
+    width: 10px;
+    height: 10px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    transition: transform 0.05s linear; /* Makes the tracking feel fluid */
+}
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.eye {
+    animation: blink 4s infinite;
+}

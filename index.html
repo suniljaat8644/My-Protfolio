@@ -30,8 +30,15 @@
         </div>
         
         <div class="hero-image">
-            <img src="avataaars.png" alt="My Avatar">
+    <div class="face-container">
+        <img src="avataaars.png" alt="My Avatar" class="avatar-bg">
+        
+        <div class="eyes-wrapper">
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
         </div>
+    </div>
+</div>
     </section>
 
     <section class="skills">
@@ -157,6 +164,52 @@ document.querySelectorAll('button, a').forEach(item => {
     item.addEventListener('mouseleave', () => {
         follower.style.transform = 'translate(-50%, -50%) scale(1)';
         follower.style.background = 'rgba(122, 0, 255, 0.3)';
+    });
+});
+</script>
+<script>
+    document.addEventListener('mousemove', (e) => {
+    const pupils = document.querySelectorAll('.pupil');
+    
+    pupils.forEach(pupil => {
+        // Get the center of the eye
+        const rect = pupil.getBoundingClientRect();
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+        
+        // Calculate the angle between mouse and eye
+        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+        
+        // Move the pupil slightly in that direction (limit distance to 5px)
+        const distance = 5;
+        const moveX = Math.cos(angle) * distance;
+        const moveY = Math.sin(angle) * distance;
+        
+        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+});
+</script>
+<script>
+    window.addEventListener('mousemove', (e) => {
+    const eyes = document.querySelectorAll('.eye');
+    
+    eyes.forEach(eye => {
+        const pupil = eye.querySelector('.pupil');
+        const rect = eye.getBoundingClientRect();
+        
+        // Find the center of the eye
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+        
+        // Angle between mouse and eye center
+        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+        
+        // Limit how far the pupil can move (8px max)
+        const distance = 6; 
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+        
+        pupil.style.transform = `translate(${x}px, ${y}px)`;
     });
 });
 </script>
